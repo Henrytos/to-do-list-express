@@ -9,3 +9,5 @@ app.use("/checklists", checklists);
 app.listen(3000, () => {
   console.log("iniciando servidor");
 });
+
+// Path: src/routes/checklists.js
