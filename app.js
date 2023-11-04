@@ -1,13 +1,24 @@
 const express = require("express");
-const checklists = require("./src/routes/checklists");
+const port = 3000;
+
+const checklistsRouter = require("./src/routes/checklists");
+const userRouter = require("./src/routes/user");
+const rootRouter = require("./src/routes/index");
+
+const path = require("path");
+
+require("./config/database");
 
 const app = express();
 app.use(express.json());
 
-app.use("/checklists", checklists);
+app.set("views", path.join(__dirname, "src/views"));
+app.set("view engine", "ejs");
 
-app.listen(3000, () => {
-  console.log("iniciando servidor");
+app.use("/", rootRouter);
+app.use("/user", userRouter);
+app.use("/checklists", checklistsRouter);
+
+app.listen(port, () => {
+  console.log(`start server on port ${port}`);
 });
-
-// Path: src/routes/checklists.js
