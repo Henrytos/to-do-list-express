@@ -13,7 +13,7 @@ const rootRouter = require("./src/routes/index");
 require("./config/database");
 
 app.use(express.json());
-app.use(methodOverride("_method"));
+app.use(methodOverride("_method", { methods: ["POST", "GET"] }));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
